@@ -38,7 +38,7 @@ const BRANCHES_URL = `${BASE_API_URL}/branches`;
 
 export default {
   data: () => ({
-    branches: ["master"], // DEFAULT MAIN BRANCH
+    branches: null, // DEFAULT MAIN BRANCH
     currentBranch: "master",
     commits: null,
   }),
