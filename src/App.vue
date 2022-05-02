@@ -31,7 +31,8 @@ function formatDate(v) {
  * Options API
  */
 
-const BASE_API_URL = 'https://api.github.com/repos/Oscar-Raygoza/vue-github-commits';
+const BASE_API_URL =
+  "https://api.github.com/repos/Oscar-Raygoza/vue-github-commits";
 
 const COMMITS_URL = `${BASE_API_URL}/commits?per_page=3&sha=`;
 const BRANCHES_URL = `${BASE_API_URL}/branches`;
@@ -59,7 +60,7 @@ export default {
     },
     async fetchBranches() {
       const branches = await (await fetch(BRANCHES_URL)).json();
-      this.branches = branches.map(b => b.name);
+      this.branches = branches.map((b) => b.name);
     },
   },
 };
@@ -80,9 +81,7 @@ export default {
   <p>vuejs/vue@{{ currentBranch }}</p>
   <ul>
     <li v-for="{ html_url, sha, author, commit } in commits" :key="sha">
-      <a :href="html_url" target="_blank" class="commit">{{
-        sha
-      }}</a>
+      <a :href="html_url" target="_blank" class="commit">{{ sha }}</a>
       - <span class="message">{{ commit.message }}</span
       ><br />
       by
