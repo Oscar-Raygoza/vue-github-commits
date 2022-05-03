@@ -9,13 +9,12 @@
   <span class="date">
     {{ formateDate(commit.author.date) }}
   </span>
-  <span> {{ test }}</span>
 </template>
 
 <script>
 export default {
   name: "CommitComponent",
-  props: ["html_url", "sha", "author", "commit", "test"],
+  props: ["html_url", "sha", "author", "commit"],
   methods: {
     formateDate(date) {
       return new Date(date);

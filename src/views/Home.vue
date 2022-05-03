@@ -20,7 +20,6 @@
           v-bind:sha="sha"
           v-bind:author="author"
           v-bind:commit="commit"
-          test="test"
         />
       </li>
     </ul>
