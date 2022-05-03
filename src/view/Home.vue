@@ -144,7 +144,7 @@ input:checked:hover {
 .container-branch {
   /* margin: 15px; */
   display: inline-block;
-  background-color: #8d8d8d;
+  background-color: #d1d1d1;
   padding: 10px 25px;
   border-radius: 15px;
 }
