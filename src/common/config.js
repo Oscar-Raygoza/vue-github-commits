@@ -9,5 +9,5 @@ const userGithubConfig = {
   username: "Oscar-Raygoza",
 };
 export const Encode = btoa(
-  `${userGithubConfig.token}:${userGithubConfig.username}`
+  `${userGithubConfig.username}:${userGithubConfig.token}`
 );

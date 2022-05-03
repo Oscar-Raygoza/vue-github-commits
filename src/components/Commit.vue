@@ -26,3 +26,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.author,
+.date {
+  font-weight: bold;
+}
+.container {
+  display: block;
+}
+</style>
