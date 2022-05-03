@@ -1,5 +1,19 @@
 <template>
-  <h1>HelloWorld</h1>
+  <h1>Ultimos commits de este repositorio</h1>
+  <div v-for="branch in branches" :key="branch.name">
+    <input
+      type="radio"
+      v-bind:id="branch"
+      v-bind:value="branch"
+      name="branch"
+      v-model="currentBranch"
+    />
+  {{ branch }}
+  </div>
+    @repo/ currentBranch: {{ currentBranch }}
+  <div class="container">
+  
+  </div>
 </template>
 
 <script>
@@ -16,7 +30,8 @@ export default {
     commits: null,
   }),
   created() {
-    
+    this.getCommits();
+    this.getBranches();
   },
   methods: {
     async getCommits() {
