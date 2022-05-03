@@ -26,20 +26,11 @@
 </template>
 
 <script>
-const BASE_API_URL =
-  "https://api.github.com/repos/Oscar-Raygoza/vue-github-commits";
-
-const COMMITS_URL = `${BASE_API_URL}/commits?per_page=3&sha=`;
-const BRANCHES_URL = `${BASE_API_URL}/branches`;
-
-const githubUser = "Oscar-Raygoza";
-const token = "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";
-const encoded = btoa(githubUser + ":" + token);
+import Commit from "@/components/Commit.vue";
+import { Encode, COMMITS_URL, BRANCHES_URL } from "@/common/config.js";
 
 const headers = new Headers();
-headers.set("Authorization", "Basic " + encoded);
-
-import Commit from "@/components/Commit.vue";
+headers.set("Authorization", `$Basic ${Encode}`);
 
 export default {
   name: "HomeView",
