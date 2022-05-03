@@ -8,37 +8,67 @@
       name="branch"
       v-model="currentBranch"
     />
-  {{ branch }}
+    {{ branch }}
   </div>
-    @repo/ currentBranch: {{ currentBranch }}
+  @repo/ currentBranch: {{ currentBranch }}
   <div class="container">
-  
+    <ul>
+      <li v-for="{ html_url, sha, author, commit } in commits" v-bind:key="sha">
+        <Commit
+          :html_url="html_url"
+          :sha="sha"
+          :author="author"
+          :commit="commit"
+        />
+      </li>
+      <br />
+    </ul>
   </div>
 </template>
 
 <script>
+import Commit from "@/components/Commit.vue";
+
 const BASE_API_URL =
   "https://api.github.com/repos/Oscar-Raygoza/vue-github-commits";
 
-const COMMITS_URL = `${BASE_API_URL}/commits?per_page=3&sha=`;
+const COMMITS_URL = `${BASE_API_URL}/commits?per_page=10&sha=`;
 const BRANCHES_URL = `${BASE_API_URL}/branches`;
 
+const userConfig = {
+  token: "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",
+  username: "Oscar-Raygoza",
+};
+
+const encode = btoa(`${userConfig.token}:${userConfig.username}`);
+
+const headers = new Headers();
+headers.set("Authorization", `Basic ${encode}`);
+
 export default {
+  name: "App",
+  components: {
+    Commit,
+  },
   data: () => ({
     branches: null,
     currentBranch: "master",
     commits: null,
   }),
+  watch: {
+    currentBranch: "getCommits",
+  },
   created() {
     this.getCommits();
     this.getBranches();
   },
   methods: {
-    async getCommits() {
+    async getCommits(newValue, oldValue) {
+      console.log({ newValue, oldValue });
       const url = `${COMMITS_URL}${this.currentBranch}`;
       //await (await fetch(url)).json();
 
-      fetch(url)
+      fetch(url, { headers })
         .then((res) => res.json())
         .then((res) => {
           this.commits = res;
@@ -47,7 +77,7 @@ export default {
     },
     async getBranches() {
       //await (await fetch(url)).json();
-    fetch(BRANCHES_URL)
+      fetch(BRANCHES_URL, { headers })
         .then((res) => res.json())
         .then((res) => {
           this.branches = res.map((branch) => branch.name);
