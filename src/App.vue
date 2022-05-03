@@ -8,7 +8,7 @@
       id="branch"
       value="branch"
     />
-    <label :for="branch">{{branch}}</label>
+    <label :for="branch">{{branch.name}}</label>
   </div>
 </template>
 
